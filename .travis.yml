@@ -12,6 +12,15 @@ before_install:
   - bundle install
   - nvm install $(cat .nvmrc)
 
+install:
+  # Download ngrok
+  - curl -sO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+  - unzip $PWD/ngrok-stable-linux-amd64.zip
+  - chmod +x $PWD/ngrok
+  # Download json parser for determining ngrok tunnel
+  - curl -sO http://stedolan.github.io/jq/download/linux64/jq
+  - chmod +x $PWD/jq
+
 script: ./scripts/travis.sh
 
 dist: trusty
